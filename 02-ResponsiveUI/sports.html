@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Business Card</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <h1 class="display-4" style="font-size: 3em;">Formularz na zajęcia sportowe</h1>
+            </div>
+
+            <!-- 3 pola edycyjne, imie nazwisko email
+                pole opcji student/pracownik
+                pole wyboru - badminton, siatkowka, basen
+                textarea - uwagi
+                przycisk zarejestruj-->
+
+            <form width="50%" margin="auto">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="namebox">Imię</label>
+                        <input type="text" class="form-control" id="namebox">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="surnamebox">Nazwisko</label>
+                        <input type="text" class="form-control" id="surnamebox">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="mail">Adres mailowy: </label>
+                        <input type="mail" class="form-control" id="mail">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="position">Student/Pracownik</label>
+                        <select class="form-control" id="position">
+                            <option>Student</option>
+                            <option>Pracownik</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check1">
+                            <label class="form check-label" for="check1">Koszykówka</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check2">
+                            <label class="form check-label" for="check2">Basen</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check3">
+                            <label class="form check-label" for="check3">Badminton</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <button type="submit">Zarejestruj</button>
+                </div>
+            </form>   
+        </div>
+    </body>
+</html>
