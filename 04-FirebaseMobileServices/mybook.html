@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <style>
+        input[type="textfield"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            margin-bottom: 5px;
+            width: 200px;
+        }
+        button {
+            width: 98px;
+        }
+        #loadedBook {
+            border: 1px solid black; 
+            width: 178px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="book">
+        <button id="loadBook">Load</button>
+        <div id="loadedBook"></div>
+    </div>
+
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAQzz1GkcKEHRzlETBJ4JSX81J1nkt5vZM",
+            authDomain: "bookshelf-1f920.firebaseapp.com",
+            databaseURL: "https://bookshelf-1f920.firebaseio.com",
+            projectId: "bookshelf-1f920",
+            storageBucket: "bookshelf-1f920.appspot.com",
+            messagingSenderId: "738783708030"
+        }
+        firebase.initializeApp(firebaseConfig)
+
+        var firestore = firebase.firestore();
+
+        const data = firestore.doc("books/book")
+
+        const bookText = document.querySelector('#loadedBook')
+        const loadButton = document.querySelector('#loadBook')
+
+        loadButton.addEventListener("click", function () {
+            data.get().then(function (doc) {
+                if (doc && doc.exists) {
+                    const myData = doc.data()
+                    console.log(myData)
+                    for (const [item, value] of Object.entries(myData)) {
+                        bookText.innerHTML += `<b>${item}</b>: ${value} <br>`
+                    }
+                }
+            }).catch(function (error) {
+                console.log("error: ", error)
+            })
+        })
+    </script>
+</body>
+
+</html>

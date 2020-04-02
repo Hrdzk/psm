@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyDkH_LyQf8sWWGGc7hbxBGTPAsRvZkdZA8",
+            authDomain: "mockfilms-b6d50.firebaseapp.com",
+            databaseURL: "https://mockfilms-b6d50.firebaseio.com",
+            projectId: "mockfilms-b6d50",
+            storageBucket: "mockfilms-b6d50.appspot.com",
+            messagingSenderId: "554571979497",
+            appId: "1:554571979497:web:af3f17c85fafcdaef46e78"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        var firestore = firebase.firestore()
+
+       
+
+
+
+        var json = "./mock_films.json"
+        fetch(json)
+            .then(response => response.json())
+            .then(json => {
+                for (let item of json) {
+
+                    const data = firestore.doc('films/film' + item.id)
+
+                    data.set({
+                        id: item.id,
+                        author: item.author,
+                        title: item.title,
+                        genre: item.genre,
+                        year: item.year,
+                        isbn: item.isbn
+                    }).then(
+                        console.log('Added' + item.id)
+                    ).catch(function(error) {
+                        console.log("Error: ", error)
+                    })
+
+                }
+            })
+
+    </script>
+</body>
+
+</html>

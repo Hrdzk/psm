@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <style>
+        tr, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyDkH_LyQf8sWWGGc7hbxBGTPAsRvZkdZA8",
+            authDomain: "mockfilms-b6d50.firebaseapp.com",
+            databaseURL: "https://mockfilms-b6d50.firebaseio.com",
+            projectId: "mockfilms-b6d50",
+            storageBucket: "mockfilms-b6d50.appspot.com",
+            messagingSenderId: "554571979497",
+            appId: "1:554571979497:web:af3f17c85fafcdaef46e78"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        var firestore = firebase.firestore()
+
+
+        const div = document.getElementById("app")
+
+
+        const data = firestore.collection('films')
+        var frag = document.createDocumentFragment()
+        var table = document.createElement("table")
+        data.get().then(function (querySnapshot) {
+            querySnapshot.forEach(item => {
+                var tr = document.createElement("tr")
+                var trValues = [item.data().id, item.data().author, item.data().title, item.data().year, item.data().genre, item.data().isbn]
+
+                trValues.forEach(item => {
+                    var td = document.createElement("td")
+                    td.textContent = item
+                    tr.appendChild(td)
+                })
+                table.appendChild(tr)
+            })
+        })
+        frag.appendChild(table)
+        document.body.appendChild(frag)
+
+        // <tr><td> ${item.id} </td><td> ${item.data().author} </td><td> ${item.data().title} </td><td> ${item.data().year} </td><td> ${item.data().genre} </td><td> ${item.data().isbn} </td></tr>`
+    </script>
+</body>
+
+</html>
